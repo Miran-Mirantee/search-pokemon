@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useQuery } from "@apollo/client";
-import { GET_POKEMONS } from "@/lib/queries";
+import { GET_POKEMON } from "@/lib/queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
@@ -19,19 +19,29 @@ export default function Home() {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+  const query = searchParams.get("search")?.toString() ?? "";
+  const [pokemonData, setPokemonData] = useState<any>(null);
 
-  const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: { first: 1 },
+  const { loading, error, data } = useQuery(GET_POKEMON, {
+    variables: { name: query },
+    skip: query === undefined,
   });
 
   useEffect(() => {
+    console.log("query", query);
+  }, []);
+
+  useEffect(() => {
     console.log("data", data);
+    if (data) {
+      setPokemonData(data.pokemon);
+    }
   }, [data]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      pokemonName: searchParams.get("search")?.toString(),
+      pokemonName: query,
     },
   });
 
@@ -99,6 +109,11 @@ export default function Home() {
             <Button>Search</Button>
           </form>
         </Form>
+
+        {query &&
+          (pokemonData
+            ? pokemonData.name
+            : "There is no pokemon going by that name")}
       </main>
     </div>
   );
