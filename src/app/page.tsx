@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useQuery } from "@apollo/client";
 import { GET_POKEMONS } from "@/lib/queries";
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,10 @@ const formSchema = z.object({
 });
 
 export default function Home() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
   const { loading, error, data } = useQuery(GET_POKEMONS, {
     variables: { first: 1 },
   });
@@ -26,12 +31,19 @@ export default function Home() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      pokemonName: "",
+      pokemonName: searchParams.get("search")?.toString(),
     },
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    const params = new URLSearchParams(searchParams);
+    const { pokemonName } = values;
+    if (pokemonName) {
+      params.set("search", pokemonName);
+    } else {
+      params.delete("search");
+    }
+    router.replace(`${pathname}?${params.toString()}`);
   };
 
   return (
