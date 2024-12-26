@@ -24,7 +24,7 @@ const PokemonResult = ({
 
   if (query && !data) return <PokemonNotFound />;
 
-  if (query && data) return <PokemonDetails />;
+  if (query && data) return <PokemonDetails pokemon={data} />;
 
   return <></>;
 };
