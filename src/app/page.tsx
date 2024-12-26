@@ -10,6 +10,8 @@ import { GET_POKEMON } from "@/lib/queries";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import PokemonResult from "@/components/ui/pokemonResult";
+import Pokemon from "@/types/Pokemon";
 
 const formSchema = z.object({
   pokemonName: z.string(),
@@ -20,11 +22,11 @@ export default function Home() {
   const pathname = usePathname();
   const router = useRouter();
   const query = searchParams.get("search")?.toString() ?? "";
-  const [pokemonData, setPokemonData] = useState<any>(null);
+  const [pokemonData, setPokemonData] = useState<Pokemon | null>(null);
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: { name: query },
-    skip: query === undefined,
+    skip: !query.length,
   });
 
   useEffect(() => {
@@ -109,11 +111,12 @@ export default function Home() {
             <Button>Search</Button>
           </form>
         </Form>
-
-        {query &&
-          (pokemonData
-            ? pokemonData.name
-            : "There is no pokemon going by that name")}
+        <PokemonResult
+          loading={loading}
+          error={error}
+          data={pokemonData}
+          query={query}
+        />
       </main>
     </div>
   );
