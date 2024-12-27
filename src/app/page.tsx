@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import PokemonResult from "@/components/ui/pokemonResult";
 import Pokemon from "@/types/Pokemon";
+import Image from "next/image";
 
 const formSchema = z.object({
   pokemonName: z.string(),
@@ -62,58 +63,63 @@ export default function Home() {
   return (
     <div
       className={`
-        grid
-        grid-rows-[20px_1fr_20px]
-        items-center
-        justify-items-center
+        flex
+        justify-center
         min-h-screen
-        p-8
-        pb-20
-        gap-16
-        sm:p-20
         font-[family-name:var(--font-geist-sans)]
-        bg-gray-600
       `}
     >
       <main
         className={`
           flex
           flex-col
-          gap-8
-          row-start-2
-          p-10
           items-center
-          sm:items-start
-          bg-slate-300
-          rounded-xl
+          gap-8
+          px-10
+          pb-8
+          mx-8
+          md:mx-24
+          bg-slate-300/80
           xl:w-3/4
           2xl:w-3/5
+          backdrop-blur-sm
         `}
       >
-        <p>Pokemon Wikipedia</p>
+        {/* <div className="flex items-center pt-2 gap-3 w-full"> */}
+        <div className="flex flex-col lg:flex-row items-center pt-2 gap-3 w-full">
+          <Image
+            src={"/pokemonLogo.png"}
+            alt="logo"
+            width={160}
+            height={0}
+            className="mix-blend-multiply"
+          />
+          <span className="text-2xl font-bold lg:mr-auto">Wikipedia</span>
 
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className={`
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className={`
             flex
             gap-2
           `}
-          >
-            <FormField
-              control={form.control}
-              name="pokemonName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input placeholder="Enter pokemon name" {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <Button>Search</Button>
-          </form>
-        </Form>
+            >
+              <FormField
+                control={form.control}
+                name="pokemonName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="Enter pokemon name" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button>Search</Button>
+            </form>
+          </Form>
+        </div>
+
         <PokemonResult
           loading={loading}
           error={error}
@@ -121,6 +127,10 @@ export default function Home() {
           query={query}
         />
       </main>
+
+      <div className="fixed h-full w-full bg-[url('/background.png')] bg-no-repeat bg-cover bg-center -z-10">
+        <div className="bg-gradient-to-t from-slate-900 to-transparent h-full w-full mix-blend-multiply " />
+      </div>
     </div>
   );
 }

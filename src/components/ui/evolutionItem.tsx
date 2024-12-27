@@ -15,7 +15,7 @@ const EvolutionItem = ({ props }: { props: EvolutionItemProps }) => {
 
   return (
     <div
-      className="flex flex-col items-center bg-slate-400 hover:cursor-pointer"
+      className="flex flex-col items-center bg-zinc-300 hover:cursor-pointer w-64 p-3 rounded-md gap-2 shadow-xl"
       onClick={() => {
         onClickItem(props.name);
       }}
@@ -25,8 +25,14 @@ const EvolutionItem = ({ props }: { props: EvolutionItemProps }) => {
         src={props.image}
         alt={props.name}
         loading="lazy"
-        width={250}
-        height={300}
+        width={0}
+        height={0}
+        sizes="100vw"
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
+        className="rounded-sm"
       />
       {props.evolutionRequirements && (
         <div>{`Requirement: ${props.evolutionRequirements.amount} ${props.evolutionRequirements.name}`}</div>
