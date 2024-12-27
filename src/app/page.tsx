@@ -84,17 +84,37 @@ export default function Home() {
           2xl:w-3/5
           backdrop-blur-sm
         `}
+        style={{
+          justifyContent: query.length ? "start" : "center",
+          alignSelf: query.length ? "auto" : "center",
+          borderRadius: query.length ? 0 : 64,
+        }}
       >
-        {/* <div className="flex items-center pt-2 gap-3 w-full"> */}
-        <div className="flex flex-col lg:flex-row items-center pt-2 gap-3 w-full">
+        <div
+          className="flex flex-col lg:flex-row items-center pt-2 gap-3 w-full"
+          style={{ flexDirection: query.length ? "row" : "column" }}
+        >
           <Image
             src={"/pokemonLogo.png"}
             alt="logo"
             width={160}
             height={0}
-            className="mix-blend-multiply"
+            style={{ display: query.length ? "block" : "none" }}
           />
-          <span className="text-2xl font-bold lg:mr-auto">Wikipedia</span>
+          <Image
+            src={"/pokemonLogo.png"}
+            alt="logo"
+            width={560}
+            height={0}
+            className="pt-8"
+            style={{ display: query.length ? "none" : "block" }}
+          />
+          <span
+            className="text-2xl font-bold lg:mr-auto"
+            style={{ marginRight: query.length ? "auto" : 0 }}
+          >
+            Wikipedia
+          </span>
 
           <Form {...form}>
             <form
