@@ -1,6 +1,6 @@
 import Pokemon from "@/types/Pokemon";
 import { Badge, badgeVariants } from "./badge";
-import { Swords, ChevronsRight, ChevronsDown } from "lucide-react";
+import { ChevronsRight, ChevronsDown } from "lucide-react";
 import Image from "next/image";
 import EvolutionItem from "./evolutionItem";
 import extractWeight from "@/utils/extractWeight";
