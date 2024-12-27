@@ -28,10 +28,11 @@ const badgeVariants = cva(
         psychic: "border-transparent text-white shadow bg-[#f08cdc]",
         bug: "border-transparent text-white shadow bg-[#46c846]",
         rock: "border-transparent text-white shadow bg-[#b48c64]",
-        ghost: "border-transparent text-white shadow bg-[#a08cff",
+        ghost: "border-slate-500 text-black shadow bg-[#a08cff",
         dragon: "border-transparent text-white shadow bg-[#5078dc]",
         fairy: "border-transparent text-black shadow bg-[#ffafdc] ",
         steel: "border-transparent text-black shadow bg-[#aac8f0] ",
+        dark: "border-transparent text-white shadow bg-[#787878] ",
       },
     },
     defaultVariants: {
