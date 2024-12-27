@@ -51,7 +51,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
           sizes="100vw"
           loading="lazy"
           style={{ height: "100%", width: "auto" }}
-          className="md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-5 rounded-lg shadow-lg"
+          className="md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-5 rounded-lg shadow-lg justify-self-center"
         />
         <div className="grid grid-cols-subgrid col-span-2 row-span-3 gap-2">
           <div className="flex flex-col col-span-2 lg:col-span-1 lg:row-span-2">
@@ -131,72 +131,80 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 md:grid md:gap-0 md:grid-cols-2 md:grid-rows-1 lg:hidden">
-        <div className="flex flex-col md:hidden">
-          <div className="font-bold">Types:</div>
-          <ul className="flex gap-1">
-            {pokemon.types.map((type, index) => (
-              <li key={index}>
-                <Badge
-                  variant={type.toLowerCase() as keyof typeof badgeVariants}
-                >
-                  {type}
-                </Badge>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col">
-          <div className="font-bold">Resistant:</div>
-          <ul className="flex gap-1 flex-wrap">
-            {pokemon.resistant.map((element, index) => (
-              <li key={index}>
-                <Badge
-                  variant={element.toLowerCase() as keyof typeof badgeVariants}
-                >
-                  {element}
-                </Badge>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col">
-          <div className="font-bold">Weaknesses:</div>
-          <ul className="flex gap-1 flex-wrap">
-            {pokemon.weaknesses.map((weakness, index) => (
-              <li key={index}>
-                <Badge
-                  variant={weakness.toLowerCase() as keyof typeof badgeVariants}
-                >
-                  {weakness}
-                </Badge>
-              </li>
-            ))}
-          </ul>
+      <div className="flex w-full md:justify-center">
+        <div className="flex flex-col gap-2 md:grid md:gap-3 md:w-[500px] md:grid-cols-2 md:grid-rows-1 lg:hidden">
+          <div className="flex flex-col md:hidden">
+            <div className="font-bold">Types:</div>
+            <ul className="flex gap-1">
+              {pokemon.types.map((type, index) => (
+                <li key={index}>
+                  <Badge
+                    variant={type.toLowerCase() as keyof typeof badgeVariants}
+                  >
+                    {type}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col">
+            <div className="font-bold">Resistant:</div>
+            <ul className="flex gap-1 flex-wrap">
+              {pokemon.resistant.map((element, index) => (
+                <li key={index}>
+                  <Badge
+                    variant={
+                      element.toLowerCase() as keyof typeof badgeVariants
+                    }
+                  >
+                    {element}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col">
+            <div className="font-bold">Weaknesses:</div>
+            <ul className="flex gap-1 flex-wrap">
+              {pokemon.weaknesses.map((weakness, index) => (
+                <li key={index}>
+                  <Badge
+                    variant={
+                      weakness.toLowerCase() as keyof typeof badgeVariants
+                    }
+                  >
+                    {weakness}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-3 md:grid md:grid-cols-2">
-        <div className="flex flex-col">
-          <div className="font-bold">Fast Attacks:</div>
-          <ul className="flex flex-col gap-1">
-            {pokemon.attacks.fast.map((attack, index) => (
-              <AttackSkill key={index} attack={attack} />
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col">
-          <div className="font-bold">Special Attacks:</div>
-          <ul className="flex flex-col gap-1">
-            {pokemon.attacks.special.map((attack, index) => (
-              <AttackSkill key={index} attack={attack} />
-            ))}
-          </ul>
+      <div className="flex w-full md:justify-center">
+        <div className="flex flex-col gap-3 md:grid md:grid-cols-2 md:w-[500px] lg:w-4/5 2xl:w-3/5">
+          <div className="flex flex-col">
+            <div className="font-bold">Fast Attacks:</div>
+            <ul className="flex flex-col gap-1">
+              {pokemon.attacks.fast.map((attack, index) => (
+                <AttackSkill key={index} attack={attack} />
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col">
+            <div className="font-bold">Special Attacks:</div>
+            <ul className="flex flex-col gap-1">
+              {pokemon.attacks.special.map((attack, index) => (
+                <AttackSkill key={index} attack={attack} />
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-1">
-        <div className="font-bold">Evolution: </div>
+        <div className="font-bold md:text-center">Evolution: </div>
         <div className="flex flex-col gap-1 items-center lg:flex-row lg:justify-center">
           {newEvolutionData &&
             newEvolutionData.map((evolution, index) => (
