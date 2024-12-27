@@ -85,6 +85,8 @@ export default function Home() {
           sm:items-start
           bg-slate-300
           rounded-xl
+          xl:w-3/4
+          2xl:w-3/5
         `}
       >
         <p>Pokemon Wikipedia</p>
