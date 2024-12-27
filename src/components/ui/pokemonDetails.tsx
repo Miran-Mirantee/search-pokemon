@@ -38,9 +38,9 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-2 md:grid md:grid-cols-4 md:grid-rows-5">
+      <div className="flex flex-col gap-3 md:grid md:grid-cols-4 md:grid-rows-5">
         <div className="flex flex-col items-center md:row-span-2 md:col-span-2">
-          <div className="font-bold text-2xl">{`#${pokemon.number} ${pokemon.name}`}</div>
+          <div className="font-bold text-2xl md:text-3xl">{`#${pokemon.number} ${pokemon.name}`}</div>
           <div>{pokemon.classification}</div>
         </div>
         <Image
@@ -79,8 +79,8 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
                 pokemon.weight.maximum
               )} kg`}
             </div>
-            <div className="hidden md:flex">
-              <div>Types:</div>
+            <div className="hidden md:flex md:gap-1">
+              <div className="font-bold">Types:</div>
               <ul className="flex gap-1">
                 {pokemon.types.map((type, index) => (
                   <li key={index}>
@@ -96,7 +96,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
           </div>
 
           <div className="hidden lg:block">
-            <div>Resistant:</div>
+            <div className="font-bold">Resistant:</div>
             <ul className="flex gap-1 flex-wrap">
               {pokemon.resistant.map((element, index) => (
                 <li key={index}>
@@ -113,7 +113,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
           </div>
 
           <div className="hidden lg:row-start-2 lg:col-start-2 lg:block">
-            <div>Weaknesses:</div>
+            <div className="font-bold">Weaknesses:</div>
             <ul className="flex gap-1 flex-wrap">
               {pokemon.weaknesses.map((weakness, index) => (
                 <li key={index}>
@@ -197,15 +197,15 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
 
       <div className="flex flex-col gap-1">
         <div className="font-bold">Evolution: </div>
-        <div className="flex flex-col gap-1 items-center md:flex-row ">
+        <div className="flex flex-col gap-1 items-center lg:flex-row lg:justify-center">
           {newEvolutionData &&
             newEvolutionData.map((evolution, index) => (
               <React.Fragment key={index}>
                 <EvolutionItem props={evolution} key={evolution.id} />
                 {index + 1 != newEvolutionData.length && (
                   <>
-                    <ChevronsRight size={64} className="hidden md:block" />
-                    <ChevronsDown size={64} className="md:hidden" />
+                    <ChevronsRight size={64} className="hidden lg:block" />
+                    <ChevronsDown size={64} className="lg:hidden" />
                   </>
                 )}
               </React.Fragment>

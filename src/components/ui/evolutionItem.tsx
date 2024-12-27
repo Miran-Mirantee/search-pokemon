@@ -15,7 +15,19 @@ const EvolutionItem = ({ props }: { props: EvolutionItemProps }) => {
 
   return (
     <div
-      className="flex flex-col items-center bg-zinc-300 hover:cursor-pointer w-64 p-3 rounded-md gap-2 shadow-xl"
+      className={`
+        flex
+        flex-col
+        items-center
+      bg-zinc-300
+        hover:cursor-pointer
+        w-64
+        p-3
+        rounded-md
+        gap-2
+        shadow-xl
+        lg:w-48
+      `}
       onClick={() => {
         onClickItem(props.name);
       }}
