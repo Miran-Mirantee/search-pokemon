@@ -31,7 +31,8 @@ export default function Home() {
 
   useEffect(() => {
     console.log("query", query);
-  }, []);
+    form.setValue("pokemonName", query);
+  }, [query]);
 
   useEffect(() => {
     console.log("data", data);
