@@ -34,7 +34,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
         })
       : ""),
   ] as EvolutionItemProps[];
-  console.log("newEvolutionData", newEvolutionData);
+
   return (
     <div className="flex flex-col gap-2">
       <div className="flex flex-col md:grid md:grid-cols-4 md:grid-rows-5">

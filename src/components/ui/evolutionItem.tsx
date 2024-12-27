@@ -10,7 +10,7 @@ const EvolutionItem = ({ props }: { props: EvolutionItemProps }) => {
   const onClickItem = (pokemonName: string) => {
     const params = new URLSearchParams(searchParams);
     params.set("search", pokemonName);
-    router.replace(`${pathname}?${params.toString()}`);
+    router.push(`${pathname}?${params.toString()}`);
   };
 
   return (
