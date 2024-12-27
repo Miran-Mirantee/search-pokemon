@@ -30,24 +30,22 @@ export default function Home() {
     skip: !query.length,
   });
 
-  useEffect(() => {
-    console.log("query", query);
-    form.setValue("pokemonName", query);
-  }, [query]);
-
-  useEffect(() => {
-    console.log("data", data);
-    if (data) {
-      setPokemonData(data.pokemon);
-    }
-  }, [data]);
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       pokemonName: query,
     },
   });
+
+  useEffect(() => {
+    form.setValue("pokemonName", query);
+  }, [query, form]);
+
+  useEffect(() => {
+    if (data) {
+      setPokemonData(data.pokemon);
+    }
+  }, [data]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const params = new URLSearchParams(searchParams);
