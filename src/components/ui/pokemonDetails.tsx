@@ -7,6 +7,7 @@ import extractWeight from "@/utils/extractWeight";
 import extractHeight from "@/utils/extractHeight";
 import EvolutionItemProps from "@/types/EvolutionItemProps";
 import React from "react";
+import AttackSkill from "./attackSkill";
 
 const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
   const newEvolutionData = [
@@ -180,24 +181,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
           <div className="font-bold">Fast Attacks:</div>
           <ul className="flex flex-col gap-1">
             {pokemon.attacks.fast.map((attack, index) => (
-              <li key={index} className="flex items-center">
-                <span title="Damage">
-                  <Swords
-                    size={24}
-                    className="bg-red-800 text-white p-1 rounded-full"
-                  />
-                </span>
-                <span className="w-6 text-center">{attack.damage}</span>
-                <Badge
-                  variant={
-                    attack.type.toLowerCase() as keyof typeof badgeVariants
-                  }
-                  className="mr-2"
-                >
-                  {attack.type}
-                </Badge>
-                {attack.name}
-              </li>
+              <AttackSkill key={index} attack={attack} />
             ))}
           </ul>
         </div>
@@ -205,24 +189,7 @@ const PokemonDetails = ({ pokemon }: { pokemon: Pokemon }) => {
           <div className="font-bold">Special Attacks:</div>
           <ul className="flex flex-col gap-1">
             {pokemon.attacks.special.map((attack, index) => (
-              <li key={index} className="flex items-center">
-                <span title="Damage">
-                  <Swords
-                    size={24}
-                    className="bg-red-800 text-white p-1 rounded-full"
-                  />
-                </span>
-                <span className="w-9 text-center">{attack.damage}</span>
-                <Badge
-                  variant={
-                    attack.type.toLowerCase() as keyof typeof badgeVariants
-                  }
-                  className="mr-2"
-                >
-                  {attack.type}
-                </Badge>
-                {attack.name}
-              </li>
+              <AttackSkill key={index} attack={attack} />
             ))}
           </ul>
         </div>
